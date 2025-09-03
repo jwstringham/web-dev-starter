@@ -54,10 +54,8 @@ QUnit.module('main.js tests', function() {
           ok: true,
           json: () => Promise.resolve({ setup: 'Why?', punchline: 'Because.' })
         });
-        
         //Act
         const result = await fetchRandomJoke();
-      
         //Assert
         assert.strictEqual(typeof result, 'string', 'returns a string');
         globalThis.fetch = originalFetch;
@@ -74,10 +72,8 @@ QUnit.module('main.js tests', function() {
             ok: true,
             json: () => Promise.resolve(mockJokes)
         });
-    
         //Act
         const result = await fetch5RandomJokes();
-    
         //Assert
         assert.equal(result.length, 5, 'should return 5 jokes');
     
