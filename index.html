@@ -1,69 +1,161 @@
 <!doctype html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>Hello World!</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="shortcut icon" href="img/favicon.ico">
-</head>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" href="img/favicon.ico" />
 
+  <!-- CSS Rules -->
+  <style>
+    :root { --brand:#5b8def; --ink:#1f2937; --muted:#6b7280; --card:#ffffff; --accent:#f59e0b; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 2rem;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      color: var(--ink);
+      background: radial-gradient(1200px 600px at 12% -10%, #eef2ff 0%, #e0e7ff 30%, #f8fafc 100%);
+      line-height: 1.5;
+    }
+    h1 {
+      margin: 0 0 1rem 0; font-weight: 800; letter-spacing: .3px;
+      background: linear-gradient(90deg, var(--brand), #22c55e);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    h1::after {
+      content: ""; display: block; height: 4px; width: 120px; margin-top: .35rem;
+      background: linear-gradient(90deg, var(--brand), var(--accent)); border-radius: 999px;
+    }
+    .card {
+      background: var(--card); border: 1px solid #e5e7eb; border-radius: 16px;
+      padding: 1rem 1.25rem; margin: 1rem 0; box-shadow: 0 10px 24px rgba(0,0,0,.04);
+    }
+    button {
+      appearance: none; background: var(--brand); color: #fff; border: none;
+      padding: .65rem 1rem; border-radius: 12px; font-weight: 600; cursor: pointer;
+      transition: transform .06s ease, box-shadow .2s ease, background .2s ease;
+      box-shadow: 0 6px 16px rgba(91,141,239,.35);
+    }
+    button:hover { background: #3c76ee; }
+    button:active { transform: translateY(1px); box-shadow: 0 4px 10px rgba(91,141,239,.25); }
+    label { font-weight: 600; display: inline-block; margin: .35rem 0 .2rem; }
+    input {
+      width: 100%; padding: .55rem .65rem; border: 1px solid #e5e7eb; border-radius: 10px;
+      outline: none; font-size: .95rem; background: #fff;
+    }
+    input:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(91,141,239,.20); }
+    table { border-collapse: collapse; width: 100%; background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
+    th, td { padding: .75rem .9rem; border-bottom: 1px solid #eef2f7; }
+    thead th { text-align: left; background: #f8fafc; font-weight: 700; letter-spacing: .2px; }
+    hr { border: none; height: 1px; background: #e5e7eb; margin: 1.5rem 0; }
+
+    .about-list { list-style: none; padding: 0; margin: .75rem 0 0; display: grid; gap: .75rem; }
+    .about-item { display: grid; gap: .2rem; }
+    .label { font-weight: 700; }
+    .value { background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 10px; padding: .6rem .75rem; }
+    .italic-style { color: var(--muted); font-style: italic; }
+    .avatar-frame {
+      display: grid; grid-template-columns: 1fr 180px; gap: 1rem; align-items: center;
+    }
+    .avatar-box {
+      width: 180px; height: 180px; border-radius: 16px;
+      border: 2px dashed #cbd5e1; display: grid; place-items: center; text-align: center; padding: .75rem;
+      background: repeating-linear-gradient(-45deg, #f1f5f9 0 10px, #f8fafc 10px 20px);
+      color: var(--muted); font-size: .9rem;
+    }
+  </style>
+</head>
 <body>
   <h1>HTML Rocks!</h1>
-  <p>
-    <button  onclick="helloWorld()">Prints Hello World to the Developer console</button>
-  </p>
-  <hr>
-  <form id="addForm">
-    <label for="num1">Number 1:</label>
-    <input type="number" id="num1" name="num1" required>
-    <br>
-    <label for="num2">Number 2:</label>
-    <input type="number" id="num2" name="num2" required>
-    <br>
-    <button type="submit">Add Numbers</button>
-  </form>
 
-  <label id="result">Result:</label>
+  <div class="card">
+    <p>
+      <button onclick="helloWorld()">Say Hello</button>
+    </p>
+  </div>
 
-  <hr>
+  <div class="card">
+    <form id="addForm">
+      <label for="num1">Number 1</label>
+      <input type="number" id="num1" name="num1" placeholder="Type a number…" required>
 
-  <button id="jokeButton">Get a Random Joke</button>
-  <p id="joke"></p>
+      <label for="num2">Number 2</label>
+      <input type="number" id="num2" name="num2" placeholder="Type another number…" required>
 
-  <hr>
-  <button id="jokeButtonTable">Get a  5 Random Jokes</button>
-  <table id="jokeTable"></table>
+      <div style="margin-top: .75rem;">
+        <button type="submit">Add Numbers</button>
+      </div>
+    </form>
+    <p id="result" class="italic-style" style="margin-top:.5rem;">Result will appear here.</p>
+  </div>
 
-  <script type="module" script="js/main.js">
-    import {helloWorld, add, fetchRandomJoke, fetch5RandomJokes} from './js/main.js';
+  <div class="card">
+    <button id="jokeButton">Get a Random Joke</button>
+    <p id="joke" class="italic-style" style="margin-top:.5rem;"></p>
+  </div>
 
-    // This shows how to assign a function to the window object
-    // so that it can be called from the browser console
-    window.helloWorld = helloWorld;
+  <div class="card">
+    <button id="jokeButtonTable">Get 5 Random Jokes</button>
+    <div style="margin-top:.75rem; overflow-x:auto;">
+      <table id="jokeTable"></table>
+    </div>
+  </div>
 
-    // This shows how to add an event listener to a button in the HTML
-    // and call a function when the button is clicked
+  <div class="card">
+    <h2 style="margin:0 0 .25rem 0;">About Me</h2>
+    <ul class="about-list">
+      <li class="about-item">
+        <span class="label">Name</span>
+        <span class="value">James Stringham</span>
+      </li>
+      <li class="about-item">
+        <span class="label">Expected Graduation Date</span>
+        <span class="value">Spring 2026</span>
+      </li>
+      <li class="about-item">
+        <span class="label">Do I currently have a job doing web dev?</span>
+        <span class="value">I do not have a job in web development as a whole, however I do currently work as a software development intern focusing on backend development.</span>
+      </li>
+      <li class="about-item">
+        <span class="label">Have I had a job or internship doing web dev?</span>
+        <span class="value">For the past year and a half I have worked as a software developer intern.</span>
+      </li>
+      <li class="about-item avatar-frame">
+        <div>
+          <span class="label">Photo of myself</span>
+        </div>
+        <div class="photo-container">
+          <img src="img/james_pic.jpeg" alt="My Photo" class="avatar" width = "150">
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <script type="module">
+    import { add, fetchRandomJoke, fetch5RandomJokes } from './js/main.js';
+
+    window.helloWorld = function () {
+      console.log('Hello World')
+      alert('Hello World!');
+    };
+
+    // Math form
     const form = document.getElementById('addForm');
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
       const num1 = parseFloat(document.getElementById('num1').value);
       const num2 = parseFloat(document.getElementById('num2').value);
-      try{
-        const result = add(num1, num2);
-        document.getElementById('result').textContent = `Result: ${result}`;
-      }catch(e){
-        console.error(e);
-        document.getElementById('result').textContent = `Error: ${e.message}`;
+      try {
+        const sum = add(num1, num2);
+        document.getElementById('result').textContent = `Result: ${sum}`;
+      } catch (err) {
+        console.error(err);
+        document.getElementById('result').textContent = `Error: ${err.message}`;
       }
-
     });
 
-    // this shows how to add an event listener to a button in the HTML
-    // that calls a function that fetches a random joke from an API
-    // and displays it on the page
+    // Random joke
     const jokebtn = document.getElementById('jokeButton');
     const jokeresult = document.getElementById('joke');
     jokebtn.addEventListener('click', async () => {
@@ -77,32 +169,22 @@
       }
     });
 
-    // this shows how to add an event listener to a button in the HTML
-    // that calls a function that fetches 5 random jokes from an API
-    // and displays them in a table on the page
+    // 5 random jokes table
     const jokeTableBtn = document.getElementById('jokeButtonTable');
     const jokeTable = document.getElementById('jokeTable');
     jokeTableBtn.addEventListener('click', async () => {
       try {
         jokeTable.textContent = 'Loading...';
-        const joke = await fetch5RandomJokes();
+        const jokes = await fetch5RandomJokes();
         jokeTable.innerHTML = `
-              <thead>
-              <tr>
-                <th>Joke</th>
-              </tr>
-              </thead>
-              <tbody>
-              ${joke.map(j => `<tr><td>${j}</td></tr>`).join('')}
-              </tbody>
-            `;
+          <thead><tr><th>Joke</th></tr></thead>
+          <tbody>${jokes.map(j => `<tr><td>${j}</td></tr>`).join('')}</tbody>
+        `;
       } catch (e) {
         console.error(e);
         document.getElementById('joke').textContent = `Error: ${e.message}`;
       }
     });
   </script>
-
 </body>
-
 </html>

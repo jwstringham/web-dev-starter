@@ -13,6 +13,19 @@ npm install
 ```
 This will install the necessary dependencies for the project.
 
+## Running the Site
+
+Running through VS Code Live Server
+1. Open the project folder in VS Code.
+2. Install the VS Code Live Server extension.
+3. Open the command palett (Ctrl + Shift P).
+4. Select "Live Preview: Start Server"
+5. Your browser will open at http://127.0.0.1:3000 (or similar) and you will see the site.
+To View Through Web Browser
+6. Copy the link at the top of the Live Server browser (i.e. http://127.0.0.1:3000)
+7. Paste that link into a web browser of your choice
+8. Close the Live Preview server when finished by opening the command palett and selecting "Live Preview: Stop Server"
+
 ## Development
 
 It is recommended to use the VSCode Live Server extension to run the project
